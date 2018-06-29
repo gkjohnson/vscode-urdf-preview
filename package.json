@@ -11,14 +11,44 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.sayHello"
+        "onCommand:urdf-viewer.previewURDF",
+        "onLanguage:xml"
     ],
     "main": "./extension",
     "contributes": {
         "commands": [
             {
-                "command": "extension.sayHello",
-                "title": "Hello World"
+                "command": "urdf-viewer.previewURDF",
+                "title": "Hello World",
+                "icon": {
+                    "dark": "./",
+                    "light": "./"
+                }
+            }
+        ],
+        "menus": {
+            "editor/title": [
+                {
+                    "command": "urdf-viewer.previewURDF",
+                    "when": "editorTextFocus",
+                    "group": "navigation"
+                }
+            ]
+        },
+        "keybindings": [
+            {
+                "command": "urdf-viewer.previewURDF",
+                "key": "alt+h",
+                "mac": "alt+h",
+                "when": "editorTextFocus"
+            }
+        ],
+        "languages": [
+            {
+                "id": "xml",
+                "extensions": [
+                    ".urdf"
+                ]
             }
         ]
     },
