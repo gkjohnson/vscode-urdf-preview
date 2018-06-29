@@ -4,7 +4,9 @@ exports.activate =
 function (context) {
 
     // TODO: must use `vscode.commands.executeCommand('setContext', 'flag', false);` and
-    // reference in package.json to ensure the icon only shows up when editing a URDF file
+    // reference in package.json to ensure the icon only shows up when editing a URDF file (via file extension)
+
+    // Use the URDF schema description to determine whether the file can be visualized
     let disposable = vscode.commands.registerCommand('urdf-viewer.previewURDF', function () {
         // The code you place here will be executed every time your command is executed
 
