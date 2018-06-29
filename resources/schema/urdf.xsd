@@ -1,5 +1,9 @@
 <?xml version="1.0" ?>
 <!--
+   Original source
+   https://github.com/ros/urdfdom/blob/master/xsd/urdf.xsd
+-->
+<!--
 
    XML Schema for URDF v1.0
 
