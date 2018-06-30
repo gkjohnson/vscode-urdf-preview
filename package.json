@@ -21,8 +21,8 @@
             "command": "urdf-viewer.previewURDF",
             "title": "Preview URDF Model",
             "icon": {
-                "dark": "./",
-                "light": "./"
+                "dark": "./resources/google-material-3d_rotation-dark.svg",
+                "light": "./resources/google-material-3d_rotation-light.svg"
             }
         }],
         "menus": {

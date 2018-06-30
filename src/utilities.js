@@ -29,6 +29,10 @@ async function(content) {
             return acc
         }, [])
 
+    // TODO: This is a little heavy handed to find every
+    // png and jpeg in the file to treat as a texture and isn't
+    // resiliant to other external files that might be needed
+    // like bin for gltf.
     patterns.push('**/*.jpg', '**/*.jpeg', '**/*.png')
 
     return await vscode.workspace.findFiles(`{${ patterns.join(',') }}`)
