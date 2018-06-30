@@ -13,7 +13,18 @@ el.loadingManager.setURLModifier(url => {
 
     } else {
 
-        const cleaned = url.replace(/\//g, '\\');
+        const cleaned = url
+            .replace(/\//g, '\\')
+            .split(/\\/g)
+            .reduce((acc, el) => {
+                if (el === '..') acc.pop();
+                else acc.push(el);
+                return acc;
+            }, [])
+            .join('\\');
+
+        console.log(cleaned)
+
         const res = window.__files
             .filter(f => f.indexOf(cleaned) === f.length - cleaned.length)
             .pop();
