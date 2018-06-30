@@ -21,7 +21,10 @@ function (context) {
         // Use the URDF schema description to determine whether the file can be visualized
         vscode.commands.registerCommand('urdf-viewer.previewURDF', function () {
             const fileName = vscode.window.activeTextEditor.document.fileName.split(/\\|\//g).pop();
-            vscode.commands.executeCommand('vscode.previewHtml', pp.index, vscode.ViewColumn.Two, `URDF-Preview ( ${ fileName } )`);
+            let col = vscode.window.activeTextEditor.viewColumn;
+            col = col >= 3 ? 2 : col + 1;
+
+            vscode.commands.executeCommand('vscode.previewHtml', pp.index, col, `URDF-Preview ( ${ fileName } )`);
 
             pp.update();
         }),
