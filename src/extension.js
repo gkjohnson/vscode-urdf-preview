@@ -25,14 +25,14 @@ function getRelativeDocPath() {
 }
 
 exports.activate =
-function (context) {
+function(context) {
 
     const pp = new URDFPreviewProvider(context);
     context.subscriptions.push(
         vscode.workspace.registerTextDocumentContentProvider(pp.scheme, pp),
 
         // Use the URDF schema description to determine whether the file can be visualized
-        vscode.commands.registerCommand('urdf-viewer.previewURDF', function () {
+        vscode.commands.registerCommand('urdf-viewer.previewURDF', function() {
 
             const fileName = path.basename(vscode.window.activeTextEditor.document.fileName);
             let col = vscode.window.activeTextEditor.viewColumn;
@@ -41,6 +41,7 @@ function (context) {
             vscode.commands.executeCommand('vscode.previewHtml', pp.getUri(getRelativeDocPath()), col, `URDF-Preview ( ${ fileName } )`);
 
             pp.getUri(getRelativeDocPath());
+
         }),
 
         vscode.window.onDidChangeActiveTextEditor(updateUrdfActive),
@@ -60,8 +61,9 @@ function (context) {
     // Show the icon if we can on first activate instead of waiting
     // until one of the editors changes
     updateUrdfActive();
-}
+
+};
 
 // this method is called when your extension is deactivated
 exports.deactivate =
-function() {}
+function() {};

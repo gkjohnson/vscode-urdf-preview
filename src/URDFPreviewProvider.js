@@ -6,17 +6,9 @@ const utils = require('./utilities.js');
 exports.URDFPreviewProvider =
 class {
 
-    get onDidChange() {
+    get onDidChange() { return this._didChange.event; }
 
-        return this._didChange.event;
-
-    }
-
-    get scheme() {
-
-        return 'urdf-preview';
-
-    }
+    get scheme() { return 'urdf-preview'; }
 
     getUri(file) {
 
@@ -65,7 +57,9 @@ class {
     }
 
     update(file) {
+
         this._didChange.fire(this.getUri(file));
+
     }
 
-}
+};
