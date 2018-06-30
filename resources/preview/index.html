@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <title>URDF Viewer</title>
+        <script src="{{base}}/node_modules/three/build/three.min.js"></script>
+        <script src="{{base}}/node_modules/three/examples/js/libs/inflate.min.js"></script>
+        <script src="{{base}}/node_modules/three/examples/js/loaders/3MFLoader.js"></script>
+        <script src="{{base}}/node_modules/three/examples/js/loaders/AMFLoader.js"></script>
+        <script src="{{base}}/node_modules/three/examples/js/loaders/AssimpLoader.js"></script>
+        <script src="{{base}}/node_modules/three/examples/js/loaders/AssimpJSONLoader.js"></script>
+        <script src="{{base}}/node_modules/three/examples/js/loaders/ColladaLoader.js"></script>
+        <script src="{{base}}/node_modules/three/examples/js/loaders/FBXLoader.js"></script>
+        <script src="{{base}}/node_modules/three/examples/js/loaders/GLTFLoader.js"></script>
+        <script src="{{base}}/node_modules/three/examples/js/loaders/KMZLoader.js"></script>
+        <script src="{{base}}/node_modules/three/examples/js/loaders/OBJLoader.js"></script>
+        <script src="{{base}}/node_modules/three/examples/js/loaders/PLYLoader.js"></script>
+        <script src="{{base}}/node_modules/three/examples/js/loaders/PCDLoader.js"></script>
+        <script src="{{base}}/node_modules/three/examples/js/loaders/STLLoader.js"></script>
+        <script src="{{base}}/node_modules/three/examples/js/loaders/VTKLoader.js"></script>
+        <script src="{{base}}/node_modules/three/examples/js/controls/OrbitControls.js"></script>
+        <script src="{{base}}/node_modules/threejs-model-loader/ModelLoader.js"></script>
+
+        <script src="{{base}}/node_modules/urdf-loader/URDFLoader.js"></script>
+        <script src="{{base}}/node_modules/urdf-loader/urdf-viewer-element.js"></script>
+
+        <script type="urdf-content">{{urdf-content}}</script>
+        <script type="urdf-path">{{urdf-path}}</script>
+
+        <script>
+            window.__baseURL = `{{base}}`;
+            window.__workspaceURL = `{{workspace}}`;
+        </script>
+
+        <style>
+            *, body {
+                padding: 0;
+                margin: 0;
+            }
+
+            body {
+                overflow: hidden;
+            }
+
+            urdf-viewer {
+                display: block;
+                width: 100vw;
+                height: 100vh;
+            }
+        </style>
+    </head>
+    <body>
+
+        <urdf-viewer package="dummy-package/" display-shadow up="Z+"></urdf-viewer>
+
+        <script>customElements.define('urdf-viewer', URDFViewer)</script>
+        <script src="{{base}}/resources/preview/index.js"></script>
+    </body>
+</html>
