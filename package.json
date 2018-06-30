@@ -14,7 +14,7 @@
         "onCommand:urdf-viewer.previewURDF",
         "onLanguage:xml"
     ],
-    "main": "./extension",
+    "main": "./src/extension",
     "contributes": {
         "commands": [
             {
@@ -30,7 +30,7 @@
             "editor/title": [
                 {
                     "command": "urdf-viewer.previewURDF",
-                    "when": "editorTextFocus",
+                    "when": "editorTextFocus && urdfActive",
                     "group": "navigation"
                 }
             ]
@@ -40,7 +40,7 @@
                 "command": "urdf-viewer.previewURDF",
                 "key": "alt+h",
                 "mac": "alt+h",
-                "when": "editorTextFocus"
+                "when": "editorTextFocus && urdfActive"
             }
         ],
         "languages": [
