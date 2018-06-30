@@ -46,13 +46,65 @@
                 width: 100vw;
                 height: 100vh;
             }
+
+            #do-animate, #urdf-options, #ignore-joint-limits {
+                display: none;
+            }
+
+            #controls {
+                margin-top: 0;
+                border-top: none;
+            }
+
+            #controls #toggle-controls {
+                border-bottom: 1px solid white;
+                padding-bottom: 3px;
+                text-align: left;
+            }
         </style>
     </head>
     <body>
 
-        <urdf-viewer package="dummy-package/" display-shadow up="Z+"></urdf-viewer>
+        <div id="menu">
+            <ul id="urdf-options"></ul>
+
+            <div id="controls" class="hidden">
+                <div id="toggle-controls"></div>
+                <div id="ignore-joint-limits" class="toggle">Ignore Joint Limits</div>
+                <div id="do-animate" class="toggle">Animate Joints</div>
+                <label>
+                    Up Axis
+                    <select id="up-select">
+                        <option value="+X">+X</option>
+                        <option value="-X">-X</option>
+                        <option value="+Y">+Y</option>
+                        <option value="-Y">-Y</option>
+                        <option value="+Z" selected>+Z</option>
+                        <option value="-Z">-Z</option>
+                    </select>
+                </label>
+                <ul></ul>
+            </div>
+        </div>
+
+        <!--
+            With anti-aliasing, the renderer seems to suffer from a ghosting
+            effect in vscode if the frame is not redrawn every time
+
+            This code can be used to disable anti-aliasing instead
+        -->
+        <script>
+            THREE.WebGLRenderer = class extends THREE.WebGLRenderer {
+                constructor(options) {
+                    delete options.antialias;
+                    super(options);
+                }
+            }
+        </script>
+        <urdf-viewer package="dummy-package/" display-shadow up="+Z" auto-redraw></urdf-viewer>
 
         <script>customElements.define('urdf-viewer', URDFViewer)</script>
+        <script src="{{base}}/node_modules/urdf-loader/example/index.js"></script>
         <script src="{{base}}/resources/preview/index.js"></script>
     </body>
 </html>
