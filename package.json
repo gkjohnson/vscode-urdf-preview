@@ -62,7 +62,6 @@
     "dependencies": {
         "@types/mocha": "^2.2.42",
         "@types/node": "^7.0.43",
-        "libxmljs": "^0.19.0",
         "three": "^0.94.0",
         "threejs-model-loader": "0.0.4",
         "typescript": "^2.6.1",
