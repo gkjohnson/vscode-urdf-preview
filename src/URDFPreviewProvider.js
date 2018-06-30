@@ -2,14 +2,16 @@ const vscode = require('vscode');
 const path = require('path');
 const fs = require('fs');
 
-exports.previewProvider =
+exports.URDFPreviewProvider =
 class {
 
     get onDidChange() { return this._didChange.event; }
 
-    get scheme() { return 'Page'; }
+    get scheme() { return 'urdf-preview'; }
 
-    get index() { return vscode.Uri.parse(`${ this.scheme }://index.html`); }
+    getUri(file) {
+        return vscode.Uri.parse(`${ this.scheme }://authority/urdf-preview/` + file);
+    }
 
     constructor(ctx) {
         this._context = ctx;
