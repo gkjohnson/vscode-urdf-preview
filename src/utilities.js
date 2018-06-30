@@ -17,8 +17,12 @@ function() {
 exports.getURDFFileLocations =
 async function(content) {
 
-    const patterns = content
-        .match(/package:\/\/[^"]+/g)
+    const matches = content
+        .match(/package:\/\/[^"]+/g);
+
+    if (matches == null) return [];
+
+    const patterns = matches
         .map(val => val.replace(/^package:\/\//, '**/'))
         .reduce((acc, val) => {
 

@@ -17,38 +17,48 @@
     ],
     "main": "./src/extension",
     "contributes": {
-        "commands": [{
-            "command": "urdf-viewer.previewURDF",
-            "title": "Preview URDF Model",
-            "icon": {
-                "dark": "./resources/icons/google-material-3d_rotation-dark.svg",
-                "light": "./resources/icons/google-material-3d_rotation-light.svg"
+        "commands": [
+            {
+                "command": "urdf-viewer.previewURDF",
+                "title": "Preview URDF Model",
+                "icon": {
+                    "dark": "./resources/icons/google-material-3d_rotation-dark.svg",
+                    "light": "./resources/icons/google-material-3d_rotation-light.svg"
+                }
             }
-        }],
+        ],
         "menus": {
-            "editor/title": [{
-                "command": "urdf-viewer.previewURDF",
-                "when": "urdfActive",
-                "group": "navigation"
-            }],
-            "editor/title/context": [{
-                "command": "urdf-viewer.previewURDF",
-                "when": "urdfActive",
-                "group": "urdf"
-            }]
-        },
-        "keybindings": [{
-            "command": "urdf-viewer.previewURDF",
-            "key": "alt+r",
-            "mac": "alt+r",
-            "when": "urdfActive"
-        }],
-        "languages": [{
-            "id": "xml",
-            "extensions": [
-                ".urdf"
+            "editor/title": [
+                {
+                    "command": "urdf-viewer.previewURDF",
+                    "when": "urdfActive",
+                    "group": "navigation"
+                }
+            ],
+            "editor/title/context": [
+                {
+                    "command": "urdf-viewer.previewURDF",
+                    "when": "urdfActive",
+                    "group": "urdf"
+                }
             ]
-        }]
+        },
+        "keybindings": [
+            {
+                "command": "urdf-viewer.previewURDF",
+                "key": "alt+r",
+                "mac": "alt+r",
+                "when": "urdfActive"
+            }
+        ],
+        "languages": [
+            {
+                "id": "xml",
+                "extensions": [
+                    ".urdf"
+                ]
+            }
+        ]
     },
     "scripts": {
         "postinstall": "node ./node_modules/vscode/bin/install",
@@ -61,9 +71,9 @@
         "@types/mocha": "^2.2.42",
         "@types/node": "^7.0.43",
         "three": "^0.94.0",
-        "threejs-model-loader": "0.0.4",
+        "threejs-model-loader": "0.0.5",
         "typescript": "^2.6.1",
-        "urdf-loader": "^0.2.6",
+        "urdf-loader": "^0.3.0",
         "vscode": "^1.1.6"
     }
 }

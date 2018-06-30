@@ -3,6 +3,8 @@ const path = require('path');
 const utils = require('./utilities.js');
 const URDFPreviewProvider = require('./URDFPreviewProvider.js').URDFPreviewProvider;
 
+// Update the context flag indicating whether or not
+// the active file is a URDF
 function updateUrdfActive(e) {
 
     if (!vscode.window.activeTextEditor) {
@@ -18,6 +20,7 @@ function updateUrdfActive(e) {
 
 }
 
+// Returns the current document path as relative to the workspace
 function getRelativeDocPath() {
 
     return path.relative(utils.getWorkspacePath(), vscode.window.activeTextEditor.document.fileName);
@@ -43,9 +46,6 @@ function(context) {
             pp.getUri(getRelativeDocPath());
 
         }),
-
-        vscode.window.onDidChangeActiveTextEditor(updateUrdfActive),
-        vscode.workspace.onDidChangeTextDocument(updateUrdfActive),
         vscode.workspace.onDidChangeTextDocument(e => {
 
             if (e.document === vscode.window.activeTextEditor.document) {
@@ -54,7 +54,10 @@ function(context) {
 
             }
 
-        })
+        }),
+
+        vscode.window.onDidChangeActiveTextEditor(updateUrdfActive),
+        vscode.workspace.onDidChangeTextDocument(updateUrdfActive),
 
     );
 

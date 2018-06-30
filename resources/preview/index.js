@@ -6,13 +6,14 @@ const modelLoader = new THREE.ModelLoader(el.loadingManager);
 el.urdfLoader.defaultMeshLoader = (path, ext, done) => modelLoader.load(path, res => done(res.model));
 el.loadingManager.setURLModifier(url => {
 
+    url = url.replace(/^dummy-package\//, '');
     if (url.indexOf('blob:') !== -1) {
 
-        return url.replace(/^dummy-package\//, '').replace('file:/', 'file:///');
+        return url;
 
     } else {
 
-        const cleaned = url.replace(/^dummy-package\//, '').replace(/\//g, '\\');
+        const cleaned = url.replace(/\//g, '\\');
         const res = window.__files
             .filter(f => f.indexOf(cleaned) === f.length - cleaned.length)
             .pop();

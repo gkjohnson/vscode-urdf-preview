@@ -54,7 +54,6 @@
 
             #controls {
                 margin-top: 0;
-                border-top: none;
 
                 /*
                     we're using the example code from the
@@ -65,8 +64,12 @@
                 display: flex !important;
             }
 
-            #controls #toggle-controls {
+            #controls:not(.hidden) #toggle-controls {
                 border-bottom: 1px solid white;
+            }
+
+            #controls #toggle-controls {
+                border-top: none;
                 padding-bottom: 3px;
                 text-align: left;
             }
