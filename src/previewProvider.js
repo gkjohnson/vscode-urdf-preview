@@ -2,8 +2,6 @@ const vscode = require('vscode');
 const path = require('path');
 const fs = require('fs');
 
-// TextDocumentContentProvider
-// DocumentLinkProvider
 exports.previewProvider =
 class {
 
@@ -20,16 +18,22 @@ class {
 
     provideTextDocumentContent(uri) {
 
+        // create the regex for the template replace
         const rr = str => new RegExp(`\\{\\{\\s*${ str }\\s*\\}\\}`, 'gi');
 
-        const p = path.join('file:/', this._context.extensionPath);
-        const index = fs.readFileSync( path.join(this._context.extensionPath, 'resources/preview/index.html'), { encoding: 'utf8' });
+        const extLoadPath = path.join('file:///', this._context.extensionPath);
+        const index =
+            fs.readFileSync(
+                path.join(this._context.extensionPath, 'resources/preview/index.html'),
+                { encoding: 'utf8' }
+            );
+
 
         return index
-            .replace(rr('base'), p.replace(/\\/g, '\\\\'))
+            .replace(rr('base'), extLoadPath.replace(/\\/g, '\\\\'))
             .replace(rr('workspace'), vscode.workspace.workspaceFolders[0].uri.fsPath.replace(/\\/g, '\\\\'))
-            .replace(rr('urdf-path'), vscode.window.activeTextEditor.document.fileName)
-            .replace(rr('urdf-content'), vscode.window.activeTextEditor.document.getText());
+            .replace(rr('urdf-path'), vscode.window.activeTextEditor && vscode.window.activeTextEditor.document.fileName)
+            .replace(rr('urdf-content'), vscode.window.activeTextEditor && vscode.window.activeTextEditor.document.getText());
 
     }
 
