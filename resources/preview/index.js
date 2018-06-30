@@ -8,7 +8,13 @@ el.loadingManager.setURLModifier(url => {
     if (url.indexOf('blob:') !== -1) {
         return url.replace(/^dummy-package\//, '').replace('file:/', 'file:///');
     } else {
-        return 'file://' + (window.__workspaceURL + '/urdf/' + url.replace(/^dummy-package\//, '')).replace(/\/+/g, '/');
+
+        const cleaned = url.replace(/^dummy-package\//, '').replace(/\//g, '\\');
+        const res = window.__files
+            .filter(f => f.indexOf(cleaned) === f.length - cleaned.length)
+            .pop();
+
+        return 'file://' + res;
     }
 
 });

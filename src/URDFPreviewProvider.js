@@ -31,7 +31,7 @@ class {
 
     }
 
-    provideTextDocumentContent(uri) {
+    async provideTextDocumentContent(uri) {
 
         const filePath = path.join(utils.getWorkspacePath(), uri.fsPath);
         const document = vscode.workspace.textDocuments.find(e => e.fileName.toLowerCase() === filePath.toLowerCase());
@@ -46,22 +46,26 @@ class {
         const rr = str => new RegExp(`\\{\\{\\s*${ str }\\s*\\}\\}`, 'gi');
 
         const extLoadPath = path.join('file:///', this._context.extensionPath);
-        const index =
+        const indexHtml =
             fs.readFileSync(
                 path.join(this._context.extensionPath, 'resources/preview/index.html'),
                 { encoding: 'utf8' }
             );
 
-        return index
+        const urdfContent = document.getText();
+        const files = (await utils.getURDFFileLocations(urdfContent)).map(f => `"${ f.fsPath }"`);
+
+        return indexHtml
             .replace(rr('base'), extLoadPath.replace(/\\/g, '\\\\'))
             .replace(rr('workspace'), utils.getWorkspacePath().replace(/\\/g, '\\\\'))
             .replace(rr('urdf-path'), document.fileName)
-            .replace(rr('urdf-content'), document.getText());
+            .replace(rr('urdf-content'), urdfContent)
+            .replace(rr('files'), `[${ files.join(',') }]`.replace(/\\/g, '\\\\'));
 
     }
 
-    update() {
-        this._didChange.fire(this.index);
+    update(file) {
+        this._didChange.fire(this.getUri(file));
     }
 
 }
