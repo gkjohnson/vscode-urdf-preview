@@ -14,3 +14,4 @@ el.loadingManager.setURLModifier(url => {
 });
 
 el.urdf = URL.createObjectURL(new Blob([urdfcontent]));
+el.camera.position.set(5, 5, 5);

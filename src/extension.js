@@ -4,27 +4,32 @@ const previewProvider = require('./previewProvider.js').previewProvider;
 
 
 function updateUrdfActive() {
-    const name = vscode.window.activeTextEditor.document.fileName;
-    vscode.commands.executeCommand('setContext', 'urdfActive', validation.isExtensionURDF(name));
+    if (!vscode.window.activeTextEditor) {
+        vscode.commands.executeCommand('setContext', 'urdfActive', false);
+    } else {
+        const name = vscode.window.activeTextEditor.document.fileName;
+        vscode.commands.executeCommand('setContext', 'urdfActive', validation.isExtensionURDF(name));
+    }
 }
 
 exports.activate =
 function (context) {
     const pp = new previewProvider(context);
-    pp.schemes.forEach(s => {
-        vscode.workspace.registerTextDocumentContentProvider(s, pp);
-    });
+    context.subscriptions.push(
+        vscode.workspace.registerTextDocumentContentProvider(pp.scheme, pp),
 
-    // Use the URDF schema description to determine whether the file can be visualized
-    const disposable = vscode.commands.registerCommand('urdf-viewer.previewURDF', function () {
-        const fileName = vscode.window.activeTextEditor.document.fileName.split(/\\|\//g).pop();
-        vscode.commands.executeCommand('vscode.previewHtml', pp.index, vscode.ViewColumn.Two, `URDF-Preview ( ${ fileName } )`);
-    });
+        // Use the URDF schema description to determine whether the file can be visualized
+        vscode.commands.registerCommand('urdf-viewer.previewURDF', function () {
+            const fileName = vscode.window.activeTextEditor.document.fileName.split(/\\|\//g).pop();
+            vscode.commands.executeCommand('vscode.previewHtml', pp.index, vscode.ViewColumn.Two, `URDF-Preview ( ${ fileName } )`);
 
-    vscode.window.onDidChangeActiveTextEditor(updateUrdfActive);
-    vscode.workspace.onDidChangeTextDocument(updateUrdfActive);
+            pp.update();
+        }),
 
-    context.subscriptions.push(disposable);
+        vscode.window.onDidChangeActiveTextEditor(updateUrdfActive),
+        vscode.workspace.onDidChangeTextDocument(updateUrdfActive),
+        vscode.workspace.onDidChangeTextDocument(() => pp.update())
+    );
 }
 
 // this method is called when your extension is deactivated

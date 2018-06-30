@@ -9,9 +9,9 @@ class {
 
     get onDidChange() { return this._didChange.event; }
 
-    get schemes() { return ['Page', 'Data']; }
+    get scheme() { return 'Page'; }
 
-    get index() { return 'Page://index.html'; }
+    get index() { return vscode.Uri.parse(`${ this.scheme }://index.html`); }
 
     constructor(ctx) {
         this._context = ctx;
@@ -31,6 +31,10 @@ class {
             .replace(rr('urdf-path'), vscode.window.activeTextEditor.document.fileName)
             .replace(rr('urdf-content'), vscode.window.activeTextEditor.document.getText());
 
+    }
+
+    update() {
+        this._didChange.fire(this.index);
     }
 
 }
