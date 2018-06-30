@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
     <head>
         <title>URDF Viewer</title>
@@ -53,6 +54,14 @@
             #controls {
                 margin-top: 0;
                 border-top: none;
+
+                /*
+                    we're using the example code from the
+                    urdf-loader repo, which hides the controls
+                    when the screen is too small, so undo that
+                    here
+                */
+                display: flex !important;
             }
 
             #controls #toggle-controls {
