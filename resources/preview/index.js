@@ -1,3 +1,4 @@
+/* globals THREE */
 const urdfcontent = document.querySelector('[type="urdf-content"]').innerText;
 const el = document.querySelector('urdf-viewer');
 
@@ -6,7 +7,9 @@ el.urdfLoader.defaultMeshLoader = (path, ext, done) => modelLoader.load(path, re
 el.loadingManager.setURLModifier(url => {
 
     if (url.indexOf('blob:') !== -1) {
+
         return url.replace(/^dummy-package\//, '').replace('file:/', 'file:///');
+
     } else {
 
         const cleaned = url.replace(/^dummy-package\//, '').replace(/\//g, '\\');
@@ -15,6 +18,7 @@ el.loadingManager.setURLModifier(url => {
             .pop();
 
         return 'file://' + res;
+
     }
 
 });
