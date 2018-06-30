@@ -21,22 +21,27 @@
             "command": "urdf-viewer.previewURDF",
             "title": "Preview URDF Model",
             "icon": {
-                "dark": "./resources/scene.svg",
-                "light": "./resources/scene.svg"
+                "dark": "./",
+                "light": "./"
             }
         }],
         "menus": {
             "editor/title": [{
                 "command": "urdf-viewer.previewURDF",
-                "when": "editorTextFocus && urdfActive",
+                "when": "urdfActive",
                 "group": "navigation"
+            }],
+            "editor/title/context": [{
+                "command": "urdf-viewer.previewURDF",
+                "when": "urdfActive",
+                "group": "urdf"
             }]
         },
         "keybindings": [{
             "command": "urdf-viewer.previewURDF",
             "key": "alt+r",
             "mac": "alt+r",
-            "when": "editorTextFocus && urdfActive"
+            "when": "urdfActive"
         }],
         "languages": [{
             "id": "xml",
