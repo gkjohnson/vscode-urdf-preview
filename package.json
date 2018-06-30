@@ -3,7 +3,8 @@
     "displayName": "URDF Viewer",
     "description": "",
     "version": "0.0.1",
-    "publisher": "GarrettJohnson",
+    "publisher": "gkjohnson",
+    "author": "Garrett Johnson <garrett.kjohnson@gmail.com>",
     "engines": {
         "vscode": "^1.24.0"
     },
@@ -16,41 +17,33 @@
     ],
     "main": "./src/extension",
     "contributes": {
-        "commands": [
-            {
-                "command": "urdf-viewer.previewURDF",
-                "title": "Preview URDF Model",
-                "icon": {
-                    "dark": "./",
-                    "light": "./"
-                }
+        "commands": [{
+            "command": "urdf-viewer.previewURDF",
+            "title": "Preview URDF Model",
+            "icon": {
+                "dark": "./resources/scene.svg",
+                "light": "./resources/scene.svg"
             }
-        ],
+        }],
         "menus": {
-            "editor/title": [
-                {
-                    "command": "urdf-viewer.previewURDF",
-                    "when": "editorTextFocus && urdfActive",
-                    "group": "navigation"
-                }
-            ]
-        },
-        "keybindings": [
-            {
+            "editor/title": [{
                 "command": "urdf-viewer.previewURDF",
-                "key": "alt+r",
-                "mac": "alt+r",
-                "when": "editorTextFocus && urdfActive"
-            }
-        ],
-        "languages": [
-            {
-                "id": "xml",
-                "extensions": [
-                    ".urdf"
-                ]
-            }
-        ]
+                "when": "editorTextFocus && urdfActive",
+                "group": "navigation"
+            }]
+        },
+        "keybindings": [{
+            "command": "urdf-viewer.previewURDF",
+            "key": "alt+r",
+            "mac": "alt+r",
+            "when": "editorTextFocus && urdfActive"
+        }],
+        "languages": [{
+            "id": "xml",
+            "extensions": [
+                ".urdf"
+            ]
+        }]
     },
     "scripts": {
         "postinstall": "node ./node_modules/vscode/bin/install",
