@@ -4,8 +4,11 @@ An extension for viewing and testing a URDF file. Based on the [URDFLoader](http
 
 The 3D view reloads as the URDF file is edited and can only load geometry files and textures from within the current VSCode workspace.
 
+![preview](./resources/screenshot.png)
+
+_ATHLETE model and URDFLoader © 2018 California Institute of Technology, available [here](https://github.com/gkjohnson/urdf-loaders/)_
+
 ## TODO
-- Create README image
 - Create an icon for the extension
 - Display errors?
 - Validate against URDF schema file before display
