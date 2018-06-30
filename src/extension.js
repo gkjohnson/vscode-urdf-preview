@@ -2,7 +2,6 @@ const vscode = require('vscode');
 const validation = require('./validation.js');
 const previewProvider = require('./previewProvider.js').previewProvider;
 
-
 function updateUrdfActive() {
     if (!vscode.window.activeTextEditor) {
         vscode.commands.executeCommand('setContext', 'urdfActive', false);

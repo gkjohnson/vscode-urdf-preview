@@ -19,7 +19,7 @@
         "commands": [
             {
                 "command": "urdf-viewer.previewURDF",
-                "title": "Hello World",
+                "title": "Preview URDF Model",
                 "icon": {
                     "dark": "./",
                     "light": "./"
@@ -38,8 +38,8 @@
         "keybindings": [
             {
                 "command": "urdf-viewer.previewURDF",
-                "key": "alt+h",
-                "mac": "alt+h",
+                "key": "alt+r",
+                "mac": "alt+r",
                 "when": "editorTextFocus && urdfActive"
             }
         ],
