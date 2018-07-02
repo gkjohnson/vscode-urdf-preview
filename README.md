@@ -10,9 +10,3 @@ _ATHLETE model and URDFLoader © 2018 California Institute of Technology, availa
 
 ## TODO
 - Create an icon for the extension
-- Display errors?
-- Validate against URDF schema file before display
-- Options
-  - `update` - whether to up on "save" or "change"
-  - `background-color` - the background color of the viewer
-  - `open-controls` - whether the controls should start open
