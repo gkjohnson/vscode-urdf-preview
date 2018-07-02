@@ -1,25 +1,26 @@
 {
-    "name": "urdf-viewer",
-    "displayName": "URDF Viewer",
-    "description": "",
+    "name": "urdf-preview",
+    "displayName": "URDF Preview",
+    "description": "Extension for previewing URDF files",
     "version": "0.0.1",
     "publisher": "gkjohnson",
+    "license": "Apache-2.0",
     "author": "Garrett Johnson <garrett.kjohnson@gmail.com>",
     "engines": {
-        "vscode": "^1.24.0"
+        "vscode": "^1.17.0"
     },
     "categories": [
         "Other"
     ],
     "activationEvents": [
-        "onCommand:urdf-viewer.previewURDF",
+        "onCommand:urdf-preview.previewURDF",
         "onLanguage:xml"
     ],
     "main": "./src/extension",
     "contributes": {
         "commands": [
             {
-                "command": "urdf-viewer.previewURDF",
+                "command": "urdf-preview.previewURDF",
                 "title": "Preview URDF Model",
                 "icon": {
                     "dark": "./resources/icons/google-material-3d_rotation-dark.svg",
@@ -30,14 +31,14 @@
         "menus": {
             "editor/title": [
                 {
-                    "command": "urdf-viewer.previewURDF",
+                    "command": "urdf-preview.previewURDF",
                     "when": "urdfActive",
                     "group": "navigation"
                 }
             ],
             "editor/title/context": [
                 {
-                    "command": "urdf-viewer.previewURDF",
+                    "command": "urdf-preview.previewURDF",
                     "when": "urdfActive",
                     "group": "urdf"
                 }
@@ -45,7 +46,7 @@
         },
         "keybindings": [
             {
-                "command": "urdf-viewer.previewURDF",
+                "command": "urdf-preview.previewURDF",
                 "key": "alt+r",
                 "mac": "alt+r",
                 "when": "urdfActive"

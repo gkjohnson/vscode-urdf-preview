@@ -35,7 +35,7 @@ function(context) {
         vscode.workspace.registerTextDocumentContentProvider(pp.scheme, pp),
 
         // Use the URDF schema description to determine whether the file can be visualized
-        vscode.commands.registerCommand('urdf-viewer.previewURDF', function() {
+        vscode.commands.registerCommand('urdf-preview.previewURDF', function() {
 
             const fileName = path.basename(vscode.window.activeTextEditor.document.fileName);
             let col = vscode.window.activeTextEditor.viewColumn;
