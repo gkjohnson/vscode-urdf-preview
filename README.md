@@ -1,4 +1,4 @@
-# URDF Viewer VSCode Extension
+# URDF Preview VSCode Extension
 
 An extension for viewing and testing a URDF file. Based on [this URDFLoader](https://github.com/gkjohnson/urdf-loaders/) for THREE.js.
 
