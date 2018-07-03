@@ -66,8 +66,7 @@
         "test": "node ./node_modules/vscode/bin/test"
     },
     "devDependencies": {
-        "eslint": "^4.11.0",
-        "urdf-loader": "^0.3.1"
+        "eslint": "^4.11.0"
     },
     "dependencies": {
         "@types/mocha": "^2.2.42",
@@ -75,6 +74,7 @@
         "three": "^0.94.0",
         "threejs-model-loader": "0.0.5",
         "typescript": "^2.6.1",
+        "urdf-loader": "^0.3.2",
         "vscode": "^1.1.6"
     }
 }

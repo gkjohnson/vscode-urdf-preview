@@ -22,6 +22,7 @@
 
         <script src="{{base}}/node_modules/urdf-loader/URDFLoader.js"></script>
         <script src="{{base}}/node_modules/urdf-loader/urdf-viewer-element.js"></script>
+        <script src="{{base}}/node_modules/urdf-loader/urdf-manipulator-element.js"></script>
 
         <link href="{{base}}/node_modules/urdf-loader/example/styles.css" rel="stylesheet" />
 
@@ -115,7 +116,7 @@
         </script>
         <urdf-viewer package="dummy-package/" display-shadow up="+Z" auto-redraw></urdf-viewer>
 
-        <script>customElements.define('urdf-viewer', URDFViewer)</script>
+        <script>customElements.define('urdf-viewer', URDFManipulator)</script>
         <script src="{{base}}/node_modules/urdf-loader/example/index.js"></script>
         <script src="{{base}}/resources/preview/index.js"></script>
     </body>
