@@ -23,8 +23,6 @@ el.loadingManager.setURLModifier(url => {
             }, [])
             .join('\\');
 
-        console.log(cleaned)
-
         const res = window.__files
             .filter(f => f.indexOf(cleaned) === f.length - cleaned.length)
             .pop();
