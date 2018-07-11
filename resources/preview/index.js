@@ -2,6 +2,24 @@
 const urdfcontent = document.querySelector('[type="urdf-content"]').innerText;
 const el = document.querySelector('urdf-viewer');
 
+// removes '..' and '.' tokens and normalizes slashes
+const cleanFilePath = path => {
+
+    return path
+        .replace(/\\/g, '/')
+        .split(/\//g)
+        .reduce((acc, el) => {
+
+            if (el === '..') acc.pop();
+            else if (el !== '.') acc.push(el);
+            return acc;
+
+        }, [])
+        .join('/');
+
+};
+
+const fileNames = window.__files.map(n => cleanFilePath(n));
 const modelLoader = new THREE.ModelLoader(el.loadingManager);
 el.urdfLoader.defaultMeshLoader = (path, ext, done) => modelLoader.load(path, res => done(res.model));
 el.loadingManager.setURLModifier(url => {
@@ -13,19 +31,8 @@ el.loadingManager.setURLModifier(url => {
 
     } else {
 
-        const cleaned = url
-            .replace(/\//g, '\\')
-            .split(/\\/g)
-            .reduce((acc, el) => {
-                if (el === '..') acc.pop();
-                else acc.push(el);
-                return acc;
-            }, [])
-            .join('\\');
-
-        console.log(cleaned)
-
-        const res = window.__files
+        const cleaned = cleanFilePath(url);
+        const res = fileNames
             .filter(f => f.indexOf(cleaned) === f.length - cleaned.length)
             .pop();
 
