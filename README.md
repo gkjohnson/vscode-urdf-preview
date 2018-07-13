@@ -1,6 +1,6 @@
 # URDF Preview VSCode Extension
 
-VSCode extension for viewing and testing a URDF file. Based on [this URDFLoader](https://github.com/gkjohnson/urdf-loaders/) for THREE.js.
+VSCode extension for viewing and testing a URDF file. Based on the [URDFLoader](https://github.com/gkjohnson/urdf-loaders/) for THREE.js.
 
 The 3D view reloads as the URDF file is edited and can only load geometry files and textures from within the current VSCode workspace.
 
