@@ -74,7 +74,7 @@
         "three": "^0.94.0",
         "threejs-model-loader": "0.0.5",
         "typescript": "^2.6.1",
-        "urdf-loader": "^0.3.2",
+        "urdf-loader": "^0.3.3",
         "vscode": "^1.1.6"
     }
 }
