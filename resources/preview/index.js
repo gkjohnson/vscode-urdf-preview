@@ -24,7 +24,6 @@ const modelLoader = new THREE.ModelLoader(el.loadingManager);
 el.urdfLoader.defaultMeshLoader = (path, ext, done) => modelLoader.load(path, res => done(res.model));
 el.loadingManager.setURLModifier(url => {
 
-    url = url.replace(/^dummy-package\//, '');
     if (url.indexOf('blob:') !== -1) {
 
         return url;

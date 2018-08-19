@@ -101,7 +101,7 @@
         </div>
 
         <!--
-            With anti-aliasing, the renderer seems to suffer from a ghosting
+            With anti-aliasing is enabled the renderer seems to suffer from a ghosting
             effect in vscode if the frame is not redrawn every time
 
             This code can be used to disable anti-aliasing instead
@@ -114,7 +114,7 @@
                 }
             }
         </script>
-        <urdf-viewer package="dummy-package/" display-shadow up="+Z" auto-redraw></urdf-viewer>
+        <urdf-viewer display-shadow up="+Z"></urdf-viewer>
 
         <script>customElements.define('urdf-viewer', URDFManipulator)</script>
         <script src="{{base}}/node_modules/urdf-loader/example/index.js"></script>
