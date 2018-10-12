@@ -1,4 +1,5 @@
 const vscode = require('vscode');
+const path = require('path');
 
 exports.isExtensionURDF =
 function(name) {
@@ -15,26 +16,29 @@ function() {
 };
 
 exports.getURDFFileLocations =
-async function(content) {
+async function(content, filePath) {
 
     const matches = content
-        .match(/package:\/\/[^"]+/g);
+        .match(/filename\s*=\s*"[^"]+"/g);
 
     if (matches == null) return [];
 
+    console.log(filePath)
+    const dir = path.dirname(filePath);
+    const wsPath = this.getWorkspacePath();
     const patterns = matches
-        .map(val => val.replace(/^package:\/\//, '**/'))
-        .reduce((acc, val) => {
+        .map(val => {
 
-            if (!acc.includes(val)) {
-
-                acc.push(val);
-
+            const content = /filename\s*=\s*"([^"]+)"/.exec(val)[1];
+            if (/^package:\/\//.test(content)) {
+                return content.replace(/^package:\/\//, '**/');
+            } else {
+                const p = path.resolve(dir, content);
+                const relative = path.relative(wsPath, p);
+                return relative;
             }
 
-            return acc;
-
-        }, []);
+        });
 
     // TODO: This is a little heavy handed to find every
     // png and jpeg in the file to treat as a texture and isn't

@@ -19,18 +19,20 @@ const cleanFilePath = path => {
 
 };
 
+const urdfBlobUrl = URL.createObjectURL(new Blob([urdfcontent]));
 const fileNames = window.__files.map(n => cleanFilePath(n));
 const modelLoader = new THREE.ModelLoader(el.loadingManager);
 el.urdfLoader.defaultMeshLoader = (path, ext, done) => modelLoader.load(path, res => done(res.model));
 el.loadingManager.setURLModifier(url => {
 
-    if (url.indexOf('blob:') !== -1) {
+    if (urdfBlobUrl === url) {
 
         return url;
 
     } else {
 
-        const cleaned = cleanFilePath(url);
+        const rawUrl = url.replace(/^blob:file:[\\/]{3}/, '');
+        const cleaned = cleanFilePath(rawUrl);
         const res = fileNames
             .filter(f => f.indexOf(cleaned) === f.length - cleaned.length)
             .pop();
@@ -41,5 +43,9 @@ el.loadingManager.setURLModifier(url => {
 
 });
 
-el.urdf = URL.createObjectURL(new Blob([urdfcontent]));
+el.urdf = urdfBlobUrl;
 el.camera.position.set(5, 5, 5);
+el.directionalLight.shadow.bias = -0.0001;
+
+window.addEventListener('focus', () => el.recenter());
+window.addEventListener('resize', () => el.recenter());

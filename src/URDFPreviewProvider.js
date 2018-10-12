@@ -40,7 +40,7 @@ class {
 
         // get the locations of the URDF files
         const urdfContent = document.getText();
-        const files = (await utils.getURDFFileLocations(urdfContent)).map(f => `"${ f.fsPath }"`);
+        const files = (await utils.getURDFFileLocations(urdfContent, filePath)).map(f => `"${ f.fsPath }"`);
 
         // Fetch the index file and fill out the templat strings
         const extLoadPath = path.join('file:///', this._context.extensionPath);

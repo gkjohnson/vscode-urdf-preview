@@ -41,6 +41,7 @@
 
             body {
                 overflow: hidden;
+                animation: none;
             }
 
             urdf-viewer {
@@ -114,7 +115,7 @@
                 }
             }
         </script>
-        <urdf-viewer display-shadow up="+Z"></urdf-viewer>
+        <urdf-viewer display-shadow up="+Z" no-auto-recenter></urdf-viewer>
 
         <script>customElements.define('urdf-viewer', URDFManipulator)</script>
         <script src="{{base}}/node_modules/urdf-loader/example/index.js"></script>
